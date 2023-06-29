@@ -22,6 +22,7 @@ public class Project {
   private List<Material> materials = new LinkedList<>();
   private List<Step> steps = new LinkedList<>();
   private List<Category> categories = new LinkedList<>();
+public Object getCategories;
 
   public Integer getProjectId() {
     return projectId;

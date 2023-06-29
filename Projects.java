@@ -20,7 +20,9 @@ public class Projects {
 
 	// @formatter:off
 	private List<String> operations = List.of(
-			"1) Add a project"
+			"1) Add a project",
+			"2) List projects",
+			"3) Select a project"
 			);
 	// @formatter:on
 	
@@ -43,6 +45,10 @@ public class Projects {
 					createProject();
 					break;
 					
+				case 2:
+					listProjects();
+					break;
+									
 				default:
 					System.out.println("\n" + selection + " is not a valid selection. Try again.");
 					break;
@@ -53,6 +59,7 @@ public class Projects {
 			}		
 	}	
 	}
+	
 	private void createProject() {
 		String projectName = getStringInput("Enter the project name");
 		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours:");
@@ -114,7 +121,7 @@ public class Projects {
 		printOperations();
 		
 		Integer input = getIntInput("Enter a menu selection");
-		
+
 		return Objects.isNull(input) ? -1 : input;
 	}
 	private void printOperations() {
@@ -122,6 +129,15 @@ public class Projects {
 		
 		operations.forEach(line -> System.out.println(" " + line));		
 	
+	}
+	private void listProjects() {
+		List<Project> projects = projectsService.fetchAllProjects();
+		
+		System.out.println("\nProjects:");
+		
+		projects.forEach(project -> System.out.println("  " + project.getProjectId() + ": " + project.getProjectName()));
+		
+		
 	}
 }
 
