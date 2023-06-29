@@ -1,22 +1,25 @@
 package projects;
 
 import java.sql.Connection;
+
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import projects.entity.Project;
+
 import projects.exception.DbException;
-import projects.service.ProjectsService;
+import projects.service.ProjectService;
 
 
 /**
  * @author sandralane
  *
  */
-public class Projects {
+public class ProjectsApp {
 	private Scanner scanner = new Scanner(System.in);
-	private ProjectsService projectsService = new ProjectsService();
+	private ProjectService projectService = new ProjectService();
 
 	// @formatter:off
 	private List<String> operations = List.of(
@@ -27,7 +30,7 @@ public class Projects {
 	// @formatter:on
 	
 	public static void main(String[] args) {
-		new Projects().processUserSelections();
+		new ProjectsApp().processUserSelections();
 	}
 	private void processUserSelections() {
 		boolean done = false;
@@ -75,7 +78,7 @@ public class Projects {
 		project.setDifficulty(difficulty);
 		project.setNotes(notes);
 		
-		Project dbProject = projectsService.addProject(project);
+		Project dbProject = projectService.addProject(project);
 		System.out.println("You have successfully created project: " + dbProject);
 	}
 	
@@ -131,7 +134,7 @@ public class Projects {
 	
 	}
 	private void listProjects() {
-		List<Project> projects = projectsService.fetchAllProjects();
+		List<Project> projects = projectService.fetchAllProjects();
 		
 		System.out.println("\nProjects:");
 		

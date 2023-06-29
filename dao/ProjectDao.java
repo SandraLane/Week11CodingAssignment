@@ -1,6 +1,8 @@
 package projects.dao;
 
 import java.sql.Connection;
+
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.sql.PreparedStatement;
@@ -11,15 +13,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 import jdk.jfr.Category;
-
-import java.math.BigDecimal;
 import projects.entity.Material;
 import projects.entity.Project;
 import projects.entity.Step;
-import provided.util.DaoBase;
 import projects.exception.DbException;
+import projects.ProjectsApp;
 
-public class ProjectsDao extends DaoBase {
+import java.math.BigDecimal;
+
+import provided.util.DaoBase;
+
+public class ProjectDao extends DaoBase {
 	
 	private static final String CATEGORY_TABLE = "category";
 	private static final String MATERIAL_TABLE = "material";
@@ -88,21 +92,21 @@ public class ProjectsDao extends DaoBase {
 			throw new DbException(e);
 		}
 	}
-	public Optional<Project> fetchProjectById(Integer projectId) {
+	public Optional<ProjectsApp> fetchProjectById(Integer projectId) {
 		String sql = "SELECT * FROM " + PROJECT_TABLE + " WHERE project_id = ?";
 		
 		try(Connection conn = DbConnection.getConnection()) {
 			startTransaction(conn);
 			
 			try {
-				Project project = null;
+				ProjectsApp project = null;
 				
 				try(PreparedStatement stmt = conn.prepareStatement(sql)) {
 					setParameter(stmt, 1, projectId, Integer.class);
 					
 					try(ResultSet rs = stmt.executeQuery()) {
 						if(rs.next()) {
-							project = extract(rs, Project.class);
+							project = extract(rs, ProjectsApp.class);
 						
 						}
 					}
