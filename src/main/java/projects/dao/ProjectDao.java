@@ -1,5 +1,6 @@
 package projects.dao;
 
+<<<<<<< HEAD:dao/ProjectDao.java
 import java.sql.Connection;
 
 
@@ -8,20 +9,34 @@ import java.util.LinkedList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+=======
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+>>>>>>> 13c7bed (Corrected folder structure):src/main/java/projects/dao/ProjectDao.java
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 import projects.entity.Category;
+<<<<<<< HEAD:dao/ProjectDao.java
 
+=======
+>>>>>>> 13c7bed (Corrected folder structure):src/main/java/projects/dao/ProjectDao.java
 import projects.entity.Material;
 import projects.entity.Project;
 import projects.entity.Step;
 import projects.exception.DbException;
+<<<<<<< HEAD:dao/ProjectDao.java
 import projects.ProjectsApp;
 
 import java.math.BigDecimal;
 
+=======
+>>>>>>> 13c7bed (Corrected folder structure):src/main/java/projects/dao/ProjectDao.java
 import provided.util.DaoBase;
 
 public class ProjectDao extends DaoBase {
