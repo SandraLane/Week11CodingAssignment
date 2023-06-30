@@ -1,25 +1,13 @@
 package projects;
 
-<<<<<<<< HEAD:projects/ProjectsApp.java
-========
-
->>>>>>>> 13c7bed (Corrected folder structure):src/main/java/projects/ProjectsApp.java
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-<<<<<<<< HEAD:projects/ProjectsApp.java
-import entity.Project;
-import exception.DbException;
-import service.ProjectService;
-========
 import projects.entity.Project;
 import projects.exception.DbException;
 import projects.service.ProjectService;
->>>>>>>> 13c7bed (Corrected folder structure):src/main/java/projects/ProjectsApp.java
-
-
 
 /**
  * @author sandralane
