@@ -1,16 +1,14 @@
 package projects;
 
-import java.sql.Connection;
-
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-import projects.entity.Project;
 
-import projects.exception.DbException;
-import projects.service.ProjectService;
+import entity.Project;
+import exception.DbException;
+import service.ProjectService;
+
 
 
 /**
@@ -55,10 +53,12 @@ public class ProjectsApp {
 				default:
 					System.out.println("\n" + selection + " is not a valid selection. Try again.");
 					break;
+					
 				}
 			}
 			catch(Exception e) {
 				System.out.println("\nError: " + e + "Try again.");
+				e.printStackTrace();
 			}		
 	}	
 	}

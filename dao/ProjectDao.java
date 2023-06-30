@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import jdk.jfr.Category;
+import projects.entity.Category;
+
 import projects.entity.Material;
 import projects.entity.Project;
 import projects.entity.Step;
@@ -92,21 +93,21 @@ public class ProjectDao extends DaoBase {
 			throw new DbException(e);
 		}
 	}
-	public Optional<ProjectsApp> fetchProjectById(Integer projectId) {
+	public Optional<Project> fetchProjectById(Integer projectId) {
 		String sql = "SELECT * FROM " + PROJECT_TABLE + " WHERE project_id = ?";
 		
 		try(Connection conn = DbConnection.getConnection()) {
 			startTransaction(conn);
 			
 			try {
-				ProjectsApp project = null;
+				Project project = null;
 				
 				try(PreparedStatement stmt = conn.prepareStatement(sql)) {
 					setParameter(stmt, 1, projectId, Integer.class);
 					
 					try(ResultSet rs = stmt.executeQuery()) {
 						if(rs.next()) {
-							project = extract(rs, ProjectsApp.class);
+							project = extract(rs, Project.class);
 						
 						}
 					}
@@ -162,13 +163,13 @@ public class ProjectDao extends DaoBase {
 		}
 		}
 		@SuppressWarnings("unchecked")
-		private Collection<? extends projects.entity.Category> fetchCategoriesForProject(Connection conn, Integer projectId)
+		private List<Category> fetchCategoriesForProject(Connection conn, Integer projectId)
 				throws SQLException {
 			//@formatter:off
 			String sql = ""
 					+ "SELECT c.* FROM " + CATEGORY_TABLE + " c "
 					+ "JOIN " + PROJECT_CATEGORY_TABLE + " pc USING (category_id) "
-					+ "WHERE project_id = ?";
+				+ "WHERE project_id = ?";
 			//@formatter:on
 			try(PreparedStatement stmt = conn.prepareStatement(sql)) {
 				setParameter(stmt, 1, projectId, Integer.class);
@@ -177,9 +178,9 @@ public class ProjectDao extends DaoBase {
 					List<Category> categories = new LinkedList<>();
 					
 					while(rs.next()) {
-						categories.add((Category) extract(rs, Category.class));
+						categories.add(extract(rs, Category.class));
 					}
-					return (Collection<? extends projects.entity.Category>) categories;
+					return categories;
 				}
 			}
 	}
