@@ -95,6 +95,7 @@ public class ProjectDao extends DaoBase {
 			try {
 				Project project = null;
 				
+				
 				try(PreparedStatement stmt = conn.prepareStatement(sql)) {
 					setParameter(stmt, 1, projectId, Integer.class);
 					
